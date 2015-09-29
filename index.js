@@ -12,6 +12,7 @@ function tablify(options) {
     var cellspacing = options.cellspacing || 0;
     var cellpadding = options.cellpadding || 0;
     var tableClass = options.tableClass;
+    var header_mapping = options.header_mapping || {};
     if (!tableData) {
         return new Error('Please provide data as: jsonToTable({ data: <<your json data>> })');
     }
@@ -44,13 +45,13 @@ function tablify(options) {
     htmlTable += ' cellspacing=' + cellspacing;
     htmlTable += ' cellpadding=' + cellpadding;
     if (tableClass !== undefined) {
-        htmlTable += ' class=' + tableClass;
+        htmlTable += ' class="' + tableClass + '"';
     }
     htmlTable += '>';
     htmlTable += '<thead>';
     htmlTable += '<tr>';
     header.forEach(function (key) {
-        htmlTable += '<th>' + key + '</th>';
+        htmlTable += '<th>' + (header_mapping[key] || key) + '</th>';
     });
     htmlTable += '</tr>';
     htmlTable += '</thead>';
@@ -73,9 +74,9 @@ function tablify(options) {
     return htmlTable;
 }
 
-var tablify = {
+var html_tablify = {
 
     tablify: tablify
 };
 
-module.exports = tablify;
+module.exports = html_tablify;
