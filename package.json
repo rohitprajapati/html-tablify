@@ -1,6 +1,6 @@
 {
   "name": "html-tablify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert json to html table",
   "main": "index.js",
   "scripts": {
