@@ -12,6 +12,7 @@ npm install html-tablify
 
 * Basic usage -
 ```
+var html_tablify = require('html-tablify');
 var options = {
     data: [{a: 1, b: 2}, {b: 1, a: 2}, {a: 4}]
 };
@@ -36,6 +37,7 @@ console.log(html_data);
 
 * To specify order of header use 'header' (array) in options -
 ```
+var html_tablify = require('html-tablify');
 var options = {
     data: [{a: 1, b: 2}, {b: 1, a: 2}, {a: 4, c: 5}],
     header: ['a', 'b', 'c']
@@ -61,6 +63,7 @@ console.log(html_data);
 
 * To map header text to something else use 'header_mapping' in options -
 ```
+var html_tablify = require('html-tablify');
 var options = {
     data: [{a: 1, b: 2}, {b: 1, a: 2}, {a: 4, c: 5}],
     header_mapping: {
@@ -89,6 +92,7 @@ console.log(html_data);
 
 * To override border(default 1), cellpadding(default 0) and cellspacing(default 0) use 'border', 'cellpadding' and 'cellspacing' in options -
 ```
+var html_tablify = require('html-tablify');
 var options = {
     data: [{a: 1, b: 2}, {b: 1, a: 2}, {a: 4, c: 5}],
     border: 5,
@@ -116,6 +120,7 @@ console.log(html_data);
 
 * To apply styling (css) use 'css' in options -
 ```
+var html_tablify = require('html-tablify');
 var options = {
     data: [{a: 1, b: 2}, {b: 1, a: 2}, {a: 4, c: 5}],
     css: 'table {border: 1px solid red}'
@@ -146,6 +151,7 @@ table {
 
 * To add class to table use 'tableClass' in options -
 ```
+var html_tablify = require('html-tablify');
 var options = {
     data: [{a: 1, b: 2}, {b: 1, a: 2}, {a: 4, c: 5}],
     tableClass: 'my-table'
