@@ -1,6 +1,14 @@
 # html-tablify
 
-### This package is used to convert json data to html. For e.g. -
+### This package is used to convert json data to html. 
+
+### Installation -
+
+```
+npm install html-tablify
+```
+
+### How to use -
 
 * Basic usage -
 ```
