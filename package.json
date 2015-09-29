@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rohit64/html-tablify.git"
+    "url": "git+https://github.com/rohit-prajapati/html-tablify.git"
   },
   "keywords": [
     "npm",
@@ -22,7 +22,7 @@
   "author": "Rohit Prajapati <rohit.prajapati.64@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rohit64/html-tablify/issues"
+    "url": "https://github.com/rohit-prajapati/html-tablify/issues"
   },
-  "homepage": "https://github.com/rohit64/html-tablify#readme"
+  "homepage": "https://github.com/rohit-prajapati/html-tablify#readme"
 }

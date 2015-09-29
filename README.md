@@ -131,9 +131,9 @@ console.log(html_data);
 * Output (pretty) -
 ```
 <style>
-table {
-    border: 1px solid red
-}
+    table {
+        border: 1px solid red
+    }
 </style>
 <table border=1 cellspacing=0 cellpadding=0>
     <thead>
@@ -161,7 +161,6 @@ console.log(html_data);
 ```
 * Output (pretty) -
 ```
-<style>
 <table border=1 cellspacing=0 cellpadding=0 class="my-table">
     <thead>
         <tr> <th>a</th> <th>b</th> <th>c</th> </tr>
