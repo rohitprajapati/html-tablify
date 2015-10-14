@@ -47,17 +47,17 @@ function tablify(options) {
     if (tableClass !== undefined) {
         htmlTable += ' class="' + tableClass + '"';
     }
-    htmlTable += '>';
-    htmlTable += '<thead>';
+    htmlTable += '>\n';
+    htmlTable += '<thead>\n';
     htmlTable += '<tr>';
     header.forEach(function (key) {
-        htmlTable += '<th>' + (header_mapping[key] || key) + '</th>';
+        htmlTable += '<th>' + (header_mapping[key] || key) + '</th> ';
     });
-    htmlTable += '</tr>';
-    htmlTable += '</thead>';
+    htmlTable += '</tr>\n';
+    htmlTable += '</thead>\n';
 
     // 2. Generate body
-    htmlTable += '</tbody>';
+    htmlTable += '<tbody>\n';
     tableData.forEach(function (json) {
         htmlTable += '<tr>';
         header.forEach(function (key) {
@@ -65,11 +65,11 @@ function tablify(options) {
             if (value === undefined) {
                 value = '';
             }
-            htmlTable += '<td>' + value + '</td>';
+            htmlTable += '<td>' + value + '</td> ';
         });
-        htmlTable += '</tr>';
+        htmlTable += '</tr>\n';
     });
-    htmlTable += '</tbody>';
+    htmlTable += '</tbody>\n';
     htmlTable += '</table>';
     return htmlTable;
 }
