@@ -8,7 +8,7 @@ function tablify(options) {
     var tableData = options.data;
     var header = options.header;
     var css = options.css;
-    var border = options.border || 1;
+    var border = (options.border != null) ? options.border : 1;
     var cellspacing = options.cellspacing || 0;
     var cellpadding = options.cellpadding || 0;
     var tableClass = options.tableClass;
