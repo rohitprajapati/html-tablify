@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/rohit-prajapati/html-tablify/issues"
   },
-  "homepage": "https://github.com/rohit-prajapati/html-tablify#readme"
+  "homepage": "https://github.com/rohit-prajapati/html-tablify#readme",
+  "dependencies": {
+    "mocha": "^2.5.3"
+  }
 }

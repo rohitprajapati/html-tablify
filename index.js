@@ -1,29 +1,32 @@
 /* jslint node: true */
 'use strict';
 
+function isDefined(x) {
+    return x !== undefined && x !== null;
+}
+
 function tablify(options) {
-    if (!options) {
-        return new Error('Please provide details as the first parameter. For e.g. - jsonToTable({ data: <<your json data>> })');
-    }
-    var tableData = options.data;
+    options = options || {};
+    var tableData = options.data || [];
     var header = options.header;
-    var css = options.css;
-    var border = (options.border != null) ? options.border : 1;
-    var cellspacing = options.cellspacing || 0;
-    var cellpadding = options.cellpadding || 0;
-    var tableClass = options.tableClass;
+    var border = isDefined(options.border) ? options.border : 1;
+    var cellspacing = isDefined(options.cellspacing) ? options.cellspacing : 0;
+    var cellpadding = isDefined(options.cellpadding) ? options.cellpadding : 0;
+    var tableId = options.table_id || 'tablify';
+    var tableClass = options.table_class || 'tablify';
     var header_mapping = options.header_mapping || {};
-    if (!tableData) {
-        return new Error('Please provide data as: jsonToTable({ data: <<your json data>> })');
+    var pretty = options.pretty;
+    if (pretty === undefined) {
+        pretty = true;
     }
-    if (typeof tableData === 'object') {
-        if (!Array.isArray(tableData)) {
-            tableData = [tableData];
-        }
+    var isSingleRow = false;
+    if (!Array.isArray(tableData)) {
+        isSingleRow = true;
+        tableData = [tableData];
     }
 
     // If header exists in options use that else create it.
-    if (!header || !Array.isArray(header)) {
+    if (!Array.isArray(header)) {
         var headerObj = {};
         tableData.forEach(function (json) {
             var keys = Object.keys(json);
@@ -33,49 +36,67 @@ function tablify(options) {
         });
         header = Object.keys(headerObj);
     }
+
     // Generate table
-
-    // 1. Generate header
     var htmlTable = '';
-    if (css) {
-        htmlTable += '<style>' + css + '</style>';
-    }
-    htmlTable += '<table';
-    htmlTable += ' border=' + border;
-    htmlTable += ' cellspacing=' + cellspacing;
-    htmlTable += ' cellpadding=' + cellpadding;
-    if (tableClass !== undefined) {
-        htmlTable += ' class="' + tableClass + '"';
-    }
-    htmlTable += '>\n';
-    htmlTable += '<thead>\n';
-    htmlTable += '<tr>';
+    var cellArray = [];
+    var cellRow = [];
+    cellArray.push(cellRow);
     header.forEach(function (key) {
-        htmlTable += '<th>' + (header_mapping[key] || key) + '</th> ';
+        cellRow.push('<th>' + (header_mapping[key] || key) + '</th>');
     });
-    htmlTable += '</tr>\n';
-    htmlTable += '</thead>\n';
-
-    // 2. Generate body
-    htmlTable += '<tbody>\n';
     tableData.forEach(function (json) {
-        htmlTable += '<tr>';
+        cellRow = [];
+        cellArray.push(cellRow);
         header.forEach(function (key) {
             var value = json[key];
             if (value === undefined) {
                 value = '';
+            } else if (typeof value !== 'string') {
+                value = JSON.stringify(value);
             }
-            htmlTable += '<td>' + value + '</td> ';
+            cellRow.push('<td>' + value + '</td>');
         });
-        htmlTable += '</tr>\n';
     });
-    htmlTable += '</tbody>\n';
-    htmlTable += '</table>';
+
+    var i, j;
+    if (isSingleRow && cellArray.length) {
+        cellArray = cellArray[0].map(function(col, i) {
+            return cellArray.map(function(row) {
+                return row[i];
+            })
+        });
+    }
+
+    var newLine = '';
+    var indent = '';
+    if (pretty) {
+        newLine = '\n';
+        indent = '  ';
+    }
+    if (cellArray.length > 1) {
+        htmlTable += '<table id="' + tableId + '" class="' + tableClass + '" border="' + border + '" cellspacing="' + cellspacing + '" cellpadding="' + cellpadding + '">';
+        for (i = 0; i < cellArray.length; i++) {
+            htmlTable += newLine;
+            htmlTable += indent;
+            htmlTable += '<tr>';
+            for (j = 0; j < cellArray[i].length; j++) {
+                htmlTable += newLine;
+                htmlTable += indent;
+                htmlTable += indent;
+                htmlTable += cellArray[i][j];
+            }
+            htmlTable += newLine;
+            htmlTable += indent;
+            htmlTable += '</tr>';
+        }
+        htmlTable += newLine;
+        htmlTable += '</table>';
+    }
     return htmlTable;
 }
 
 var html_tablify = {
-
     tablify: tablify
 };
 
