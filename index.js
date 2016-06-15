@@ -82,7 +82,7 @@ function tablify(options) {
         newLine = '\n';
         indent = '  ';
     }
-    if (cellArray.length > 1) {
+    if (tableData.length) {
         htmlTable += '<table id="' + tableId + '" class="' + tableClass + '" border="' + border + '" cellspacing="' + cellspacing + '" cellpadding="' + cellpadding + '">';
         for (i = 0; i < cellArray.length; i++) {
             htmlTable += newLine;
