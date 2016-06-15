@@ -33,7 +33,7 @@ var usecases = [
                 }
             }
         },
-        result: '<table id="tablify" class="tablify" border="1" cellspacing="0" cellpadding="0"><tr><th>p</th><td>123</td></tr><tr><th>q</th><td></td></tr><tr><th>r</th><td>null</td></tr><tr><th>s</th><td>ABCD</td></tr><tr><th>t</th><td>{"x":1,"y":2,"z":3}</td></tr></table>'
+        result: '<table id="tablify" class="tablify" border="1" cellspacing="0" cellpadding="0"><tr><th>p</th><td>123</td></tr><tr><th>s</th><td>ABCD</td></tr><tr><th>t</th><td>{"x":1,"y":2,"z":3}</td></tr></table>'
     },
     {
         name: 'Data as array',
