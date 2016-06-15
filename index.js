@@ -37,6 +37,13 @@ function tablify(options) {
         header = Object.keys(headerObj);
     }
 
+    if (isSingleRow && tableData.length === 1) {
+        // Don't create row if value is not defined for the header (key for objects)
+        header = header.filter(function (h) {
+            return tableData[0][h];
+        });
+    }
+
     // Generate table
     var htmlTable = '';
     var cellArray = [];
@@ -61,6 +68,7 @@ function tablify(options) {
 
     var i, j;
     if (isSingleRow && cellArray.length) {
+        // Transpose the array to show object as key-value pair instead of table
         cellArray = cellArray[0].map(function(col, i) {
             return cellArray.map(function(row) {
                 return row[i];
