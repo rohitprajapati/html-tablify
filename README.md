@@ -149,12 +149,12 @@ console.log(html_data);
 
 ---
 
-* To add class to table use 'tableClass' in options -
+* To add class to table use 'table_class' in options -
 ```
 var html_tablify = require('html-tablify');
 var options = {
     data: [{a: 1, b: 2}, {b: 1, a: 2}, {a: 4, c: 5}],
-    tableClass: 'my-table'
+    table_class: 'my-table'
 };
 var html_data = html_tablify.tablify(options);
 console.log(html_data);
