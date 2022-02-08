@@ -82,6 +82,9 @@ function tablify(options) {
         newLine = '\n';
         indent = '  ';
     }
+    if (options.css) {
+        htmlTable += `<style>${newLine}${indent}${options.css}${newLine}</style>${newLine}`
+    }
     if (tableData.length) {
         htmlTable += '<table id="' + tableId + '" class="' + tableClass + '" border="' + border + '" cellspacing="' + cellspacing + '" cellpadding="' + cellpadding + '">';
         for (i = 0; i < cellArray.length; i++) {
